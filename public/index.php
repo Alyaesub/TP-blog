@@ -1,4 +1,4 @@
-<h1>ceci est mon routeur</h1>
+
 <?php
 
 require '../vendor/autoload.php';

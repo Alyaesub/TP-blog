@@ -7,3 +7,6 @@ en php vanilla,
 -Page présentation d'un article
 -Administration des catégories
 -Administration des articles
+
+structuration des dossier et des routes
+installation de altorouteur
