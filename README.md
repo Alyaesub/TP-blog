@@ -8,7 +8,12 @@ en php vanilla,
 -Administration des catégories
 -Administration des articles
 
-structuration des dossier et des routes
+/////////////////////////////////////
+
+-structuration des dossier et des routes
 installation de altorouteur
 
-css avec boostrap quitstarter
+-css avec boostrap quitstarter
+
+-gestion et création des bdd a la main et organisation et administration avec adminier
+création des tables en sql

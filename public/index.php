@@ -1,11 +1,14 @@
-
 <?php
 
 require '../vendor/autoload.php';
 
-$router = new AltoRouter();
 
+$router = new App\Router(dirname(__DIR__) . '/views');
+$router->get('/blog', 'post/index', 'blog');
+$router->get('/blog/categories/[*:slug]?', 'category/show', 'categories');
+$router->run();
 
+/* $router = new AltoRouter();
 $router->map('GET', '/blog', function () {
   require dirname(__DIR__) . '/views/post/index.php';
 });
@@ -17,4 +20,4 @@ if ($match) {
   call_user_func_array($match['target'], $match['params']);
 } else {
   echo "Page introuvable";
-}
+} */
