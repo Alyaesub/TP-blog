@@ -2,22 +2,16 @@
 
 require '../vendor/autoload.php';
 
+//donne l'heure avec miliseconde pour voir le chargement du site
+define('DEBUG_TIME', microtime(true));
+
+//systeme et outils de debug "whoops"
+$whoops = new \Whoops\Run;
+$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+$whoops->register();
+
 
 $router = new App\Router(dirname(__DIR__) . '/views');
 $router->get('/blog', 'post/index', 'blog');
 $router->get('/blog/categories/[*:slug]?', 'category/show', 'categories');
 $router->run();
-
-/* $router = new AltoRouter();
-$router->map('GET', '/blog', function () {
-  require dirname(__DIR__) . '/views/post/index.php';
-});
-$router->map('GET', '/blog/categories', function () {
-  require dirname(__DIR__) . '/views/category/show.php';
-});
-$match = $router->match();
-if ($match) {
-  call_user_func_array($match['target'], $match['params']);
-} else {
-  echo "Page introuvable";
-} */

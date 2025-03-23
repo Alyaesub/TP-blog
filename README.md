@@ -12,6 +12,9 @@ en php vanilla,
 
 -structuration des dossier et des routes
 installation de altorouteur
+installation de composer
+installation de symfony/var-dumper
+installation de whoops (outils de debugage)
 
 -css avec boostrap quitstarter
 
