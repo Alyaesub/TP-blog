@@ -18,15 +18,7 @@ $posts = $query->fetchAll(PDO::FETCH_CLASS, Post::class);
 <div class="row">
   <?php foreach ($posts as $post) : ?> <!-- boucle qui apelle les posts -->
     <div class="col-md-3">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title"><?= htmlentities($post->getName()) ?></h5>
-          <p class="card-text"><?= $post->getExcerpt() ?></p>
-          <p>
-            <a href="#" class="btn btn-primary">Voir plus</a>
-          </p>
-        </div>
-      </div>
+      <?php require dirname(__DIR__) . '/layouts/card.php' ?>
     </div>
   <?php endforeach; ?>
 </div>

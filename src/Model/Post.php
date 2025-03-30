@@ -35,4 +35,16 @@ class Post
   {
     return new \DateTime($this->created_at);
   }
+
+  // fonction pour récupérer l'id du post 
+  public function getId(): ?int
+  {
+    return $this->id;
+  }
+
+  // fonction pour récupérer le slug du post
+  public function getSlug(): ?string
+  {
+    return $this->slug;
+  }
 }
