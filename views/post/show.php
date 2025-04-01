@@ -40,7 +40,7 @@ $query->setFetchMode(PDO::FETCH_CLASS, Category::class); //pareil que pour le po
 $categories = $query->fetchAll();
 /* dd($categories); */
 ?>
-
+<?php $title = htmlentities($post->getName()); ?><!--  donne le titre du post a l'url -->
 <div class="card-body">
   <h1 class="card-title"><?= htmlentities($post->getName()) ?></h1> <!-- affiche le nom du post -->
   <p class="text-muted"><?= $post->getCreatedAt()->format('d F Y') ?></p> <!-- affiche la date de création du post -->

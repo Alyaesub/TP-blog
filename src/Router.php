@@ -29,7 +29,8 @@ class Router
   public function run(): self //méthode pour exécuter la route 
   {
     $match = $this->router->match(); //recupère la route matchée de la variable router 
-    $params = $match['params']; //recupère les paramètres de la route matchée  
+    $params = $match['params']; //recupère les paramètres de la route matchée  a voir plus tard
+
     /*     dd($match);
  */
     // Vérifie si une route correspond
@@ -50,6 +51,10 @@ class Router
     ob_start();
     require $this->viewPath . DIRECTORY_SEPARATOR . $views . '.php';
     $content = ob_get_clean();
+    extract([
+      'content' => $content,
+      'title' => $title ?? 'Mon site'
+    ]);
     require $this->viewPath . DIRECTORY_SEPARATOR . 'layouts/default.php';
 
     return $this;

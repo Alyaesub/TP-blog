@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <title><?= $title ?? 'Mon site' ?></title>
+  <title><?= htmlentities($title ?? 'Mon site') ?></title>
 </head>
 
 <body class="d-flex flex-column h-100">
@@ -14,7 +14,11 @@
   </nav>
 
   <div class="container met-4">
-    <?= $content ?? 'Pas de contenu disponible'; ?>
+    <?php if (isset($content)) { ?>
+      <?= $content; ?>
+    <?php } else { ?>
+      <p>Pas de contenu disponible</p>
+    <?php } ?>
   </div>
 
   <footer class="bg-light py-4 footer mt-auto">
