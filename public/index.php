@@ -14,6 +14,6 @@ $whoops->register();
 $router = new App\Router(dirname(__DIR__) . '/views');
 $router->get('/', 'post/index', 'home');
 $router->get('/blog', 'post/index', 'blog');
+$router->get('/blog/categories/[*:slug]-[i:id]', 'category/show', 'categories');
 $router->get('/blog/[*:slug]-[i:id]', 'post/show', 'post');
-$router->get('/blog/categories/[*:slug]?', 'category/show', 'categories');
 $router->run();

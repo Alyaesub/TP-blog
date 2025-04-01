@@ -21,13 +21,22 @@ class Post
     return $this->name;
   }
 
-  // fonction pour récupérer le contenu du post
+  // fonction pour récupérer un extrait du contenu du post
   public function getExcerpt(): ?string
   {
     if ($this->content === null) {
       return null;
     }
     return nl2br(htmlentities(Text::excerpt($this->content, 60)));
+  }
+
+  // fonction pour récupérer le contenu du post
+  public function getContent(): ?string
+  {
+    if ($this->content === null) {
+      return null;
+    }
+    return nl2br(htmlentities($this->content));
   }
 
   // fonction pour récupérer la date de création du post

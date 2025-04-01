@@ -1,13 +1,16 @@
 <?php
+//ce fichier permet de remplir la base de données avec des données fictives pour les tests  
 
+//inclusion de faker pour la génération de données fictives 
 require_once __DIR__ . '/../vendor/autoload.php'; // Inclure Faker correctement
 
 $faker = Faker\Factory::create(); // Initialisation de Faker
 
+//connexion à la base de données  
+use App\ConnexionDb;
+
 try {
-  $pdo = new PDO('mysql:host=127.0.0.1;port=8889;dbname=TP_blog', 'root', 'root', [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-  ]);
+  $pdo = ConnexionDb::getPdo();
   echo "✅ Connexion réussie !";
 } catch (PDOException $e) {
   die("❌ Erreur de connexion : " . $e->getMessage());
