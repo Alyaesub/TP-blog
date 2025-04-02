@@ -1,3 +1,5 @@
+<!-- feuille de code pour la page show.php qui affiche une categorie -->
+
 <?php
 
 use App\ConnexionDb;
@@ -37,7 +39,7 @@ if (!filter_var($page, FILTER_VALIDATE_INT)) {
 }
 
 if ($page === '1') {
-  header('Location: /'); //si l'url de la page est 1, on redirige vers la page 1  sans passer par la page 1 dans l'url  
+  header('Location: /blog/categories/' . $category->getSlug() . '-' . $category->getId());
   exit;
 }
 $currentPage = (int)$page;
@@ -65,5 +67,21 @@ $query = $pdo->query(
 $posts = $query->fetchAll(PDO::FETCH_CLASS, Post::class);
 ?>
 
-<h1>Ma categorie est : <?= htmlentities($category->getName()); ?></h1>
+<h1>Nom de la categorie : <?= htmlentities($category->getName()); ?></h1>
 <h2>Voici les posts de cette categorie :</h2>
+<!-- affichage des categories -->
+<div class="row">
+  <?php foreach ($posts as $post) : ?> <!-- boucle qui apelle les posts -->
+    <div class="col-md-3">
+      <?php require dirname(__DIR__) . '/layouts/card.php' ?>
+    </div>
+  <?php endforeach; ?>
+</div>
+<div class="d-flex justify-content-between my-4">
+  <?php if ($currentPage > 1) : ?>
+    <a href="?page=<?= $currentPage - 1 ?>" class="btn btn-primary">Page précédente</a>
+  <?php endif; ?>
+  <?php if ($currentPage < $pages) : ?>
+    <a href="?page=<?= $currentPage + 1 ?>" class="btn btn-primary ms-auto">Page suivante</a>
+  <?php endif; ?>
+</div>

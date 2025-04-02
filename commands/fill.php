@@ -1,14 +1,14 @@
 <?php
-//ce fichier permet de remplir la base de données avec des données fictives pour les tests  
+//ce fichier permet de remplir la base de données avec des données fictives pour les tests 
+//et de crée les data que je veux en paramettrant fakers 
 
 //inclusion de faker pour la génération de données fictives 
 require_once __DIR__ . '/../vendor/autoload.php'; // Inclure Faker correctement
 
-$faker = Faker\Factory::create(); // Initialisation de Faker
-
 //connexion à la base de données  
 use App\ConnexionDb;
 
+//je teste la connexion à la base de données 
 try {
   $pdo = ConnexionDb::getPdo();
   echo "✅ Connexion réussie !";
@@ -16,6 +16,8 @@ try {
   die("❌ Erreur de connexion : " . $e->getMessage());
 }
 
+
+//je supprime les data de la base de données pour les remplacer par des données fictives 
 $pdo->exec('SET FOREIGN_KEY_CHECKS = 0');
 $pdo->exec('TRUNCATE TABLE post_category');
 $pdo->exec('TRUNCATE TABLE post');
@@ -23,15 +25,21 @@ $pdo->exec('TRUNCATE TABLE category');
 $pdo->exec('TRUNCATE TABLE user');
 $pdo->exec('SET FOREIGN_KEY_CHECKS = 1');
 
-$posts = [];
-$categories = [];
+//je paramttre faker pour la génération de données fictives 
+$faker = Faker\Factory::create('fr_FR'); // Initialisation de Faker pour la génération de données fictives en français
+
+$post_names = ['développement web', 'blockchain', 'smart contracts', 'PHP', 'JavaScript', 'Python', 'Olidity', 'NFT', 'dApps', 'sécurité web']; //je crée un tableau pour stocker les noms des posts 
+$category_names = ['Développement Web', 'Blockchain', 'Cryptomonnaies', 'Front End', 'Back End']; //je crée un tableau pour stocker les noms des catégories
+
+$post_ids = []; // Tableau pour stocker les IDs des posts créés
 
 //création de fake data avec faker.php pour la table "post"
 for ($i = 0; $i < 50; $i++) {
-  $name = $faker->sentence();
-  $slug = $faker->slug;
+  $post_name = $faker->randomElement($post_names); //je choisis un post aléatoire parmi les posts disponibles 
+  $name = ucfirst($faker->catchPhrase) . " et " . $post_name; //je crée un nom de post avec un catchphrase et un post aléatoire  
+  $slug = strtolower(str_replace(' ', '-', $name)); //je crée un slug pour le post 
   $created_at = $faker->date('Y-m-d') . ' ' . $faker->time('H:i:s');
-  $content = $faker->paragraphs(rand(3, 15), true);
+  $content = "Dans cet article, nous allons parler de $post_name. " . $faker->paragraphs(rand(3, 6), true); //je crée un contenu pour le post 
 
   $query = "INSERT INTO post (name, slug, created_at, content) VALUES (:name, :slug, :created_at, :content)";
   $stmt = $pdo->prepare($query);
@@ -41,13 +49,14 @@ for ($i = 0; $i < 50; $i++) {
     'created_at' => $created_at,
     'content' => $content
   ]);
-  $posts[] = $pdo->lastInsertId();
+  $post_ids[] = $pdo->lastInsertId();
 };
 
 //Création de 5 catégories avec Faker pour la table category
+$category_ids = []; // Tableau pour stocker les IDs des catégories
 for ($i = 0; $i < 5; $i++) {
-  $cat_name = ucfirst($faker->word);  // Génère un mot et met la première lettre en majuscule
-  $cat_slug = $faker->slug;
+  $cat_name = $faker->randomElement($category_names); //je choisis une catégorie aléatoire parmi les catégories disponibles   
+  $cat_slug = strtolower(str_replace(' ', '-', $cat_name));
 
   $query = "INSERT INTO category (name, slug) VALUES (:name, :slug)";
   $stmt = $pdo->prepare($query);
@@ -55,13 +64,17 @@ for ($i = 0; $i < 5; $i++) {
     'name' => $cat_name,
     'slug' => $cat_slug
   ]);
-  $categories[] = $pdo->lastInsertId();
+  $category_ids[] = $pdo->lastInsertId();
 }
 
 // On associe aléatoirement des articles à des catégories
-foreach ($posts as $post) {
-  $randomCategories = $faker->randomElements($categories, rand(0, count($categories)));
-  foreach ($randomCategories as $category) {
-    $pdo->exec("INSERT INTO post_category SET post_id=$post, category_id=$category");
+$stmt = $pdo->prepare("INSERT INTO post_category (post_id, category_id) VALUES (:post_id, :category_id)");
+foreach ($post_ids as $post_id) {
+  $randomCategories = $faker->randomElements($category_ids, rand(0, count($category_ids)));
+  foreach ($randomCategories as $category_id) {
+    $stmt->execute([
+      'post_id' => $post_id,
+      'category_id' => $category_id
+    ]);
   }
 }

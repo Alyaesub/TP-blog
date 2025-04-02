@@ -32,12 +32,17 @@ if ($currentPage > $pages) {
   throw new Exception('cette page n\'existe pas');
 }
 $offset = ($currentPage - 1) * $perPage;
-$query = $pdo->query("SELECT * FROM post ORDER BY created_at DESC LIMIT $perPage OFFSET $offset");
+$query = $pdo->prepare("SELECT * FROM post ORDER BY created_at DESC LIMIT :limit OFFSET :offset");
+$query->bindValue(':limit', $perPage, PDO::PARAM_INT);
+$query->bindValue(':offset', $offset, PDO::PARAM_INT);
+$query->execute();
 $posts = $query->fetchAll(PDO::FETCH_CLASS, Post::class);
+
+if (empty($posts)) {
+  throw new Exception('Aucun article trouvé');
+}
 ?>
 <h1>Mon Blog</h1>
-
-
 
 <div class="row">
   <?php foreach ($posts as $post) : ?> <!-- boucle qui apelle les posts -->

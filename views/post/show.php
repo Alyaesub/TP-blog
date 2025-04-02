@@ -1,5 +1,4 @@
-<h1>le post</h1>
-
+<!-- feuille de code pour la page show.php qui affiche un post -->
 <?php
 /* dd($params);
  */
@@ -40,6 +39,7 @@ $query->setFetchMode(PDO::FETCH_CLASS, Category::class); //pareil que pour le po
 $categories = $query->fetchAll();
 /* dd($categories); */
 ?>
+<h1>Nom du post : <?= htmlentities($post->getName()); ?></h1>
 <?php $title = htmlentities($post->getName()); ?><!--  donne le titre du post a l'url -->
 <div class="card-body">
   <h1 class="card-title"><?= htmlentities($post->getName()) ?></h1> <!-- affiche le nom du post -->
