@@ -7,6 +7,7 @@ require_once __DIR__ . '/../vendor/autoload.php'; // Inclure Faker correctement
 
 //connexion à la base de données  
 use App\ConnexionDb;
+use App\Helpers\Text;
 
 //je teste la connexion à la base de données 
 try {
@@ -37,7 +38,7 @@ $post_ids = []; // Tableau pour stocker les IDs des posts créés
 for ($i = 0; $i < 50; $i++) {
   $post_name = $faker->randomElement($post_names); //je choisis un post aléatoire parmi les posts disponibles 
   $name = ucfirst($faker->catchPhrase) . " et " . $post_name; //je crée un nom de post avec un catchphrase et un post aléatoire  
-  $slug = strtolower(str_replace(' ', '-', $name)); //je crée un slug pour le post 
+  $slug = Text::slugify($name); //je crée un slug pour le post 
   $created_at = $faker->date('Y-m-d') . ' ' . $faker->time('H:i:s');
   $content = "Dans cet article, nous allons parler de $post_name. " . $faker->paragraphs(rand(3, 6), true); //je crée un contenu pour le post 
 
@@ -56,7 +57,7 @@ for ($i = 0; $i < 50; $i++) {
 $category_ids = []; // Tableau pour stocker les IDs des catégories
 for ($i = 0; $i < 5; $i++) {
   $cat_name = $faker->randomElement($category_names); //je choisis une catégorie aléatoire parmi les catégories disponibles   
-  $cat_slug = strtolower(str_replace(' ', '-', $cat_name));
+  $cat_slug = Text::slugify($cat_name);
 
   $query = "INSERT INTO category (name, slug) VALUES (:name, :slug)";
   $stmt = $pdo->prepare($query);
@@ -70,7 +71,8 @@ for ($i = 0; $i < 5; $i++) {
 // On associe aléatoirement des articles à des catégories
 $stmt = $pdo->prepare("INSERT INTO post_category (post_id, category_id) VALUES (:post_id, :category_id)");
 foreach ($post_ids as $post_id) {
-  $randomCategories = $faker->randomElements($category_ids, rand(0, count($category_ids)));
+  // On s'assure qu'un post a au moins une catégorie en utilisant rand(1, count($category_ids))
+  $randomCategories = $faker->randomElements($category_ids, rand(1, count($category_ids)));
   foreach ($randomCategories as $category_id) {
     $stmt->execute([
       'post_id' => $post_id,

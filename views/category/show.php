@@ -38,10 +38,6 @@ if (!filter_var($page, FILTER_VALIDATE_INT)) {
   throw new Exception('Numéro de la page invalide'); //si l'url de la page n'est pas un nombre entier, on affiche une erreur evite les failles de sécurité  comme les injections sql  
 }
 
-if ($page === '1') {
-  header('Location: /blog/categories/' . $category->getSlug() . '-' . $category->getId());
-  exit;
-}
 $currentPage = (int)$page;
 if ($currentPage <= 0) {
   throw new Exception('Page invalide');
