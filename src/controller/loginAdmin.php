@@ -24,7 +24,7 @@ class LoginAdmin
 
       if ($user && password_verify($password, $user['password'])) {
         $_SESSION['user'] = $user;
-        header('Location: /admin');
+        header('Location: /admin/post/index');
         exit();
       } else {
         $_SESSION['login_error'] = "Identifiants invalides";

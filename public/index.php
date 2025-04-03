@@ -18,6 +18,7 @@ $router->get('/', 'post/index', 'home'); //route pour la page d'accueil
 $router->get('/blog', 'post/index', 'blog'); //route pour la page blog
 $router->get('/blog/categories/[*:slug]-[i:id]', 'category/show', 'categories'); //route pour la page categories
 $router->get('/blog/[*:slug]-[i:id]', 'post/show', 'post'); //route pour la page post
+$router->post('/admin/login', 'admin/loginAction', 'loginAdmin'); //
 
 // Affiche le formulaire de login
 $router->get('/admin/login', 'admin/login', 'admin_login'); //route pour la page login
