@@ -16,6 +16,7 @@ $router->get('/', 'post/index', 'home');
 $router->get('/blog', 'post/index', 'blog');
 $router->get('/blog/categories/[*:slug]-[i:id]', 'category/show', 'categories');
 $router->get('/blog/[*:slug]-[i:id]', 'post/show', 'post');
+$router->get('/admin/login', 'admin/login', 'admin_login');
 
 // Routes pour l'administration
 $router->get('/admin', 'admin/post/index', 'admin_posts');

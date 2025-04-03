@@ -29,10 +29,10 @@ $pdo->exec('SET FOREIGN_KEY_CHECKS = 1');
 //je paramttre faker pour la génération de données fictives 
 $faker = Faker\Factory::create('fr_FR'); // Initialisation de Faker pour la génération de données fictives en français
 
-$post_names = ['développement web', 'blockchain', 'smart contracts', 'PHP', 'JavaScript', 'Python', 'Olidity', 'NFT', 'dApps', 'sécurité web']; //je crée un tableau pour stocker les noms des posts 
-$category_names = ['Développement Web', 'Blockchain', 'Cryptomonnaies', 'Front End', 'Back End']; //je crée un tableau pour stocker les noms des catégories
-
-$post_ids = []; // Tableau pour stocker les IDs des posts créés
+//je crée un tableau pour stocker les noms des posts 
+$post_names = ['développement web', 'blockchain', 'smart contracts', 'PHP', 'JavaScript', 'Python', 'Olidity', 'NFT', 'dApps', 'sécurité web'];
+//je crée un tableau pour stocker les IDs des posts créés
+$post_ids = [];
 
 //création de fake data avec faker.php pour la table "post"
 for ($i = 0; $i < 50; $i++) {
@@ -54,10 +54,10 @@ for ($i = 0; $i < 50; $i++) {
 };
 
 //Création de 5 catégories avec Faker pour la table category
+$category_names = ['Développement Web', 'Blockchain', 'Cryptomonnaies', 'Front End', 'Back End']; //je crée un tableau pour stocker les noms des catégories
 $category_ids = []; // Tableau pour stocker les IDs des catégories
-for ($i = 0; $i < 5; $i++) {
-  $cat_name = $faker->randomElement($category_names); //je choisis une catégorie aléatoire parmi les catégories disponibles   
-  $cat_slug = Text::slugify($cat_name);
+foreach ($category_names as $cat_name) {
+  $cat_slug = Text::slugify($cat_name); // je slugifie le nom de la catégorie
 
   $query = "INSERT INTO category (name, slug) VALUES (:name, :slug)";
   $stmt = $pdo->prepare($query);
