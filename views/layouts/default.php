@@ -10,7 +10,12 @@
 
 <body class="d-flex flex-column h-100">
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
-    <a href="/" class="navbar-brand">Mon blog tech et web3</a>
+    <div class="container-fluid">
+      <a href="/" class="navbar-brand">Mon blog tech et web3</a>
+      <div class="ms-auto">
+        <a href="/admin" class="btn btn-outline-light">Administration</a>
+      </div>
+    </div>
   </nav>
 
   <div class="container met-4">

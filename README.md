@@ -2,6 +2,9 @@
 
 Un blog développé en PHP vanilla avec une architecture MVC.
 
+admin: alya@test.com
+password: password123
+
 ## 🚀 Fonctionnalités
 
 ### Frontend
@@ -88,8 +91,8 @@ php commands/fill/generate.php
 -   [x] Mise en place de l'architecture
 -   [x] Configuration de l'environnement
 -   [x] Création de la structure de la base de données
--   [ ] Implémentation des fonctionnalités frontend
--   [ ] Implémentation des fonctionnalités backend
+-   [x] Implémentation des fonctionnalités frontend
+-   [x] Implémentation des fonctionnalités backend
 -   [ ] Tests et débogage
 -   [ ] Documentation finale
 

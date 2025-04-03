@@ -16,4 +16,13 @@ $router->get('/', 'post/index', 'home');
 $router->get('/blog', 'post/index', 'blog');
 $router->get('/blog/categories/[*:slug]-[i:id]', 'category/show', 'categories');
 $router->get('/blog/[*:slug]-[i:id]', 'post/show', 'post');
+
+// Routes pour l'administration
+$router->get('/admin', 'admin/post/index', 'admin_posts');
+$router->get('/admin/post/new', 'admin/post/new', 'admin_post_new');
+$router->post('/admin/post/new', 'admin/post/new', 'admin_post_create');
+$router->get('/admin/post/edit/[i:id]', 'admin/post/edit', 'admin_post_edit');
+$router->post('/admin/post/edit/[i:id]', 'admin/post/edit', 'admin_post_edit_post');
+$router->post('/admin/post/delete/[i:id]', 'admin/post/delete', 'admin_post_delete');
+
 $router->run();

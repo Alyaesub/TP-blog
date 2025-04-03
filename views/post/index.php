@@ -48,7 +48,7 @@ if (empty($posts)) {
   <div class="row">
     <!-- Section des derniers articles -->
     <div class="col-md-8">
-      <h2 class="mb-4">Derniers articles</h2>
+      <h2 class="py-3 mb-4 text-center border-bottom">Derniers articles</h2>
       <div class="row">
         <?php foreach ($latestPosts as $post) : ?>
           <div class="col-md-4 mb-4">
@@ -60,7 +60,7 @@ if (empty($posts)) {
 
     <!-- Section des catégories -->
     <div class="col-md-4">
-      <h2 class="mb-4">Catégories</h2>
+      <h2 class="py-3 mb-4 text-center border-bottom">Catégories</h2>
       <div class="list-group">
         <?php foreach ($categories as $category) : ?>
           <a href="/blog/categories/<?= $category->getSlug() ?>-<?= $category->getId() ?>"
@@ -78,7 +78,7 @@ if (empty($posts)) {
   <!-- Section de tous les articles avec pagination -->
   <div class="row mt-5">
     <div class="col-12">
-      <h2 class="mb-4">Tous les articles</h2>
+      <h2 class="py-3 mb-4 text-center border-bottom">Tous les articles</h2>
       <div class="row">
         <?php foreach ($posts as $post) : ?>
           <div class="col-md-3">

@@ -26,10 +26,18 @@ class Router
 
     return $this;
   }
+
+  public function post(string $url, string $view, ?string $name = null) //méthode pour ajouter une route POST
+  {
+    $this->router->map('POST', $url, $view, $name); //ajoute une route POST à la variable router   
+
+    return $this;
+  }
+
   public function run(): self //méthode pour exécuter la route 
   {
     $match = $this->router->match(); //recupère la route matchée de la variable router 
-    $params = $match['params']; //recupère les paramètres de la route matchée  a voir plus tard
+    $params = $match['params']; //recupère les paramètres de la route matchée
 
     /*     dd($match);
  */
@@ -48,15 +56,29 @@ class Router
     }
 
     $views = $match['target'];
+    // Si les paramètres existent, on les ajoute à $_GET
+    if (isset($params)) {
+      foreach ($params as $key => $value) {
+        $_GET[$key] = $value;
+      }
+    }
+
     ob_start();
+    $router = $this; // On stocke l'instance du routeur dans une variable
     require $this->viewPath . DIRECTORY_SEPARATOR . $views . '.php';
     $content = ob_get_clean();
     extract([
       'content' => $content,
-      'title' => $title ?? 'Mon site'
+      'title' => $title ?? 'Mon site',
+      'router' => $router
     ]);
     require $this->viewPath . DIRECTORY_SEPARATOR . 'layouts/default.php';
 
     return $this;
+  }
+
+  public function url(string $name, array $params = []): string
+  {
+    return $this->router->generate($name, $params);
   }
 }

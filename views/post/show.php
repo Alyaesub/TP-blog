@@ -8,7 +8,7 @@ use App\Model\Post;
 use App\Model\Category;
 
 $id = (int)$params['id']; //convertit la valeur de la clé id de l'url en nombre entier 
-$slug = $params['slug']; //recupère la valeur de la clé slug de l'url 
+$slug = ($params['slug']); //recupère la valeur de la clé slug de l'url 
 
 //requete pour récupérer le post
 $pdo = ConnexionDb::getPdo(); //appel de la fonction getPdo de la classe ConnexionDb pour la connexion à la base de données 
