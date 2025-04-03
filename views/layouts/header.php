@@ -10,7 +10,7 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
-    <a href="#" class="navbar-brand">Mon site</a>
+    <a href="#" class="navbar-brand">Mon blog tech et web3</a>
   </nav>
 
   <div class="container met-4">

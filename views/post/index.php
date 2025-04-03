@@ -43,6 +43,7 @@ if (empty($posts)) {
   throw new Exception('Aucun article trouvé');
 }
 ?>
+
 <div class="container">
   <div class="row">
     <!-- Section des derniers articles -->
