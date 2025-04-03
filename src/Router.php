@@ -27,7 +27,7 @@ class Router
     return $this;
   }
 
-  public function post(string $url, string $view, ?string $name = null) //méthode pour ajouter une route POST
+  public function post(string $url, $view, ?string $name = null) //méthode pour ajouter une route POST
   {
     $this->router->map('POST', $url, $view, $name); //ajoute une route POST à la variable router   
 

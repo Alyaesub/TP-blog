@@ -1,4 +1,6 @@
 <?php
+//feuille de code qui gere la page d'accueil du blog
+
 // j'importe le namespace Text pour la fonction text  
 use App\Helpers\Text;
 // j'importe le namespace Post
