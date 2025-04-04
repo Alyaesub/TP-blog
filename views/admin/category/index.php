@@ -13,7 +13,7 @@ $title = "Gestion des catégories";
   <!-- Bouton pour créer une nouvelle catégorie -->
   <div class="d-flex justify-content-between my-4">
     <h2>Liste des catégories</h2>
-    <a href="<?= $router->url('admin_category_new') ?>" class="btn btn-primary">Nouvelle catégorie</a>
+    <a href="<?= $router->url('admin_category_new') ?>" class="btn btn-primary">Nouvelle catégorie</a><!--bouton pour créer une nouvelle catégorie et redirige vers la page admin/category/new.php-->
   </div>
   <table class="table">
     <thead>
@@ -31,11 +31,11 @@ $title = "Gestion des catégories";
           <td>
             <a href="<?= $router->url('admin_category_edit', ['id' => $category->getId()]) ?>" class="btn btn-primary btn-sm">
               Éditer
-            </a>
+            </a><!--bouton pour éditer une catégorie et redirige vers la page admin/category/edit.php-->
             <form action="<?= $router->url('admin_category_delete', ['id' => $category->getId()]) ?>" method="POST"
               style="display: inline" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')">
               <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
-            </form>
+            </form><!--bouton pour supprimer une catégorie et redirige vers la page admin/category/delete.php-->
           </td>
         </tr>
       <?php endforeach ?>

@@ -30,9 +30,9 @@ $router->post('/admin/post/delete/[i:id]', 'admin/post/delete', 'admin_post_dele
 // Routes admin pour les catégories
 $router->get('/admin/categories', 'admin/category/index', 'admin_category');
 $router->get('/admin/categories/new', 'admin/category/new', 'admin_category_new');
-$router->post('/admin/categories/new', 'admin/category/create', 'admin_category_create');
-$router->get('/admin/categories/edit', 'admin/category/edit', 'admin_category_edit');
-$router->post('/admin/categories/edit', 'admin/category/update', 'admin_category_update');
-$router->post('/admin/categories/delete', 'admin/category/delete', 'admin_category_delete');
+$router->post('/admin/categories/new', 'admin/category/new', 'admin_category_create');
+$router->get('/admin/categories/edit/[i:id]', 'admin/category/edit', 'admin_category_edit');
+$router->post('/admin/categories/edit/[i:id]', 'admin/category/edit', 'admin_category_edit_post');
+$router->post('/admin/categories/delete/[i:id]', 'admin/category/delete', 'admin_category_delete');
 
 $router->run();
