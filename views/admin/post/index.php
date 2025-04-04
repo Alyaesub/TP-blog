@@ -1,5 +1,5 @@
 <?php
-
+//feuille de code admin pour la gestion des articles (index)
 use App\Model\Post;
 use App\ConnexionDb;
 

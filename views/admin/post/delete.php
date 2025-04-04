@@ -1,5 +1,5 @@
 <?php
-
+//feuille de code admin pour la suppression d'un article  
 use App\ConnexionDb;
 
 $pdo = ConnexionDb::getPdo();

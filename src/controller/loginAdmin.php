@@ -13,7 +13,6 @@ class LoginAdmin
   public function handle()
   {
     session_start();
-
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
 
@@ -24,7 +23,7 @@ class LoginAdmin
 
       if ($user && password_verify($password, $user['password'])) {
         $_SESSION['user'] = $user;
-        header('Location: /admin/post/index');
+        header('Location: admin');
         exit();
       } else {
         $_SESSION['login_error'] = "Identifiants invalides";

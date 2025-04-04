@@ -1,5 +1,5 @@
 <?php
-
+//feuille de code admin pour la création d'un nouvel article 
 use App\Model\Post;
 use App\ConnexionDb;
 
