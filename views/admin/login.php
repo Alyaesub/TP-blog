@@ -1,4 +1,5 @@
 <!-- feuille de code pour la page de connexion administrateur -->
+<?php session_start(); ?>
 <div class="container mt-5">
   <h1>Connexion administrateur</h1>
   <form method="POST" action="/admin/login">

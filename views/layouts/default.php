@@ -13,7 +13,7 @@
     <div class="container-fluid">
       <a href="/" class="navbar-brand">Mon blog tech et web3</a>
       <div class="ms-auto">
-        <a href="/admin" class="btn btn-outline-light">Administration</a>
+        <a href="/admin/login" class="btn btn-outline-light">Administration</a>
       </div>
     </div>
   </nav>
