@@ -1,5 +1,5 @@
 <?php
-
+//feuille qui gére le front controller pour les routes des vues
 require '../vendor/autoload.php';
 
 //donne l'heure avec miliseconde pour voir le chargement du site

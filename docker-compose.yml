@@ -1,3 +1,5 @@
+#feuille de code pour paramétrer un environnement de développement avec Docker pour une application PHP avec MySQL
+
 version: "3.8"
 
 services:

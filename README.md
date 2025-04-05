@@ -5,7 +5,22 @@ Un blog développé en PHP vanilla avec une architecture MVC.
 admin: alya@test.com
 password: password123
 
+-   Diagramme de classe uml :
+    lien figma : https://www.figma.com/design/xnm89zb5NGNMmBjYYhWCyp/diagramme-uml-blog?t=NdLBFvM1FvzMnmuC-0
+
+-   Diagramme MCD :
+    lien figma : https://www.figma.com/design/DKLz223VTwV9UuBwUy6ZxO/diagramme-MCD-blog?node-id=0-1&p=f&t=NdLBFvM1FvzMnmuC-0
+
 ## 🚀 Fonctionnalités
+
+## 🔐 Authentification
+
+L'espace d'administration est protégé par une authentification.
+
+-   Email admin : `alya@test.com`
+-   Mot de passe : `password123`
+
+> Ces identifiants sont valables uniquement en environnement de développement.
 
 ### Frontend
 
@@ -13,20 +28,19 @@ password: password123
 -   [x] Page de catégorie avec liste des articles (pagination)
 -   [x] Page de détail d'un article
 
-### Backend (Administration)
+### 🧠 Backend
 
--   [x] Gestion des catégories (CRUD)
--   [x] Gestion des articles (CRUD)
+-   **PHP Vanilla** : langage principal utilisé côté serveur
+-   **Composer** : gestionnaire de dépendances PHP
+-   **AltoRouter** : système léger de routage
+-   **Whoops** : gestion améliorée des erreurs et affichage des stacktraces
+-   **Faker** : génération de données factices pour les tests
 
-## 🛠️ Technologies utilisées
+### 🧰 Outils de développement
 
-### Backend
-
--   PHP Vanilla
--   Composer (Gestionnaire de dépendances)
--   Altorouter (Gestion des routes)
--   Whoops (Outils de débogage)
--   Faker.php (Génération de données factices)
+-   **Whoops** : affichage clair des erreurs en environnement de développement
+-   **Faker** : création de jeux de données aléatoires pour simuler des articles et des catégories
+-   **Adminer** : outil simple et léger pour manipuler la base de données MySQL
 
 ### Frontend
 
@@ -73,6 +87,7 @@ composer install
 -   Configurer les paramètres de connexion dans `config/database.php`
 
 4. Générer des données de test (optionnel)
+   -création de bdd avec faker
 
 ```bash
 php commands/fill/generate.php
@@ -93,12 +108,21 @@ php commands/fill/generate.php
 -   [x] Création de la structure de la base de données
 -   [x] Implémentation des fonctionnalités frontend
 -   [x] Implémentation des fonctionnalités backend
--   [ ] Tests et débogage
--   [ ] Documentation finale
+-   [x] Tests et débogage
+-   [x] Documentation finale
 
-## 📚 Documentation
+## ✅ Tests
 
-La documentation détaillée sera disponible dans le dossier `docs/` une fois le projet terminé.
+Le projet a été testé manuellement sur un environnement local (PHP server ou Apache).  
+Des jeux de données aléatoires sont générés avec Faker pour valider les interfaces et le back-office.
+
+## 🚀 Déploiement
+
+Le projet peut être déployé sur un serveur PHP/MySQL classique (Apache recommandé).
+
+-   Uploadez le contenu de `public/` dans le dossier public de votre serveur
+-   Modifiez le fichier `config/database.php` selon votre hébergement
+-   Importez la base de données via Adminer ou phpMyAdmin
 
 ## 👥 Contribution
 
