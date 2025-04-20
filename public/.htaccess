@@ -1,3 +1,15 @@
+AddHandler application/x-httpd-php82 .php
+
+<Files .htaccess>
+  Order Allow,Deny
+  Deny from all
+</Files>
+
+<FilesMatch "\.(ini|env)$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
 RewriteEngine On
 
 # Redirige vers index.php si le fichier ou dossier n'existe pas

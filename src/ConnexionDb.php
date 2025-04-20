@@ -15,3 +15,23 @@ class ConnexionDb
     return $pdo;
   }
 }
+
+
+
+/* //classe pour la connexion à la base de données Pour O2switch
+class ConnexionDb
+{
+  public static function getPdo(): PDO
+  {
+    $env = parse_ini_file(__DIR__ . '/../env.ini', true);
+    $host = $env['database']['DB_HOST'];
+    $dbname = $env['database']['DB_NAME'];
+    $user = $env['database']['DB_USER'];
+    $password = $env['database']['DB_PASSWORD'];
+
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $password, [
+      PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+    ]);
+    return $pdo;
+  }
+} */
