@@ -17,11 +17,6 @@ password: password123
 
 L'espace d'administration est protégé par une authentification.
 
--   Email admin : `alya@test.com`
--   Mot de passe : `password123`
-
-> Ces identifiants sont valables uniquement en environnement de développement.
-
 ### Frontend
 
 -   [x] Page d'accueil avec liste des articles (pagination)
