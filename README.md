@@ -2,9 +2,6 @@
 
 Un blog développé en PHP vanilla avec une architecture MVC.
 
-admin: alya@test.com
-password: password123
-
 -   Diagramme de classe uml :
     lien figma : https://www.figma.com/design/xnm89zb5NGNMmBjYYhWCyp/diagramme-uml-blog?t=NdLBFvM1FvzMnmuC-0
 
@@ -16,9 +13,6 @@ password: password123
 ## 🔐 Authentification
 
 L'espace d'administration est protégé par une authentification.
-
--   Email admin : `alya@test.com`
--   Mot de passe : `password123`
 
 > Ces identifiants sont valables uniquement en environnement de développement.
 
