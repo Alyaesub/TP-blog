@@ -36,6 +36,10 @@ class Router
 
   public function run(): self //méthode pour exécuter la route 
   {
+    if (session_status() === PHP_SESSION_NONE) {
+      session_start();
+    }
+
     $match = $this->router->match(); //recupère la route matchée de la variable router 
     $params = $match['params']; //recupère les paramètres de la route matchée
 
@@ -56,6 +60,13 @@ class Router
     }
 
     $views = $match['target'];
+
+    if ($this->isAdminRoute($match) && !$this->isLoginRoute($match) && !$this->isAuthenticated()) {
+      $_SESSION['login_error'] = "Vous devez être connecté pour accéder à l'administration.";
+      header('Location: /admin/login');
+      exit();
+    }
+
     // Si les paramètres existent, on les ajoute à $_GET
     if (isset($params)) {
       foreach ($params as $key => $value) {
@@ -80,5 +91,25 @@ class Router
   public function url(string $name, array $params = []): string
   {
     return $this->router->generate($name, $params);
+  }
+
+  private function isAdminRoute(array $match): bool
+  {
+    $target = $match['target'] ?? '';
+
+    return strncmp($target, 'admin/', 6) === 0;
+  }
+
+  private function isLoginRoute(array $match): bool
+  {
+    $name = $match['name'] ?? '';
+    $target = $match['target'] ?? '';
+
+    return in_array($name, ['admin_login', 'admin_login_post'], true) || $target === 'admin/login';
+  }
+
+  private function isAuthenticated(): bool
+  {
+    return !empty($_SESSION['user']);
   }
 }

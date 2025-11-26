@@ -12,7 +12,9 @@ class LoginAdmin
 {
   public function handle()
   {
-    session_start();
+    if (session_status() === PHP_SESSION_NONE) {
+      session_start();
+    }
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
     // Vérifier que l'email et le mot de passe ne sont pas vide
@@ -34,8 +36,6 @@ class LoginAdmin
       if (password_verify($password, $user['password'])) {
         $_SESSION['user'] = $user;
         header('Location: /admin');
-        echo "Mot de passe correct";
-        var_dump($password);
         exit();
       } else {
         $_SESSION['login_error'] = "Mot de passe incorrect";
