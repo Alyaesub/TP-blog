@@ -1,4 +1,4 @@
-  $password = 'password123';
+
 $hash = '$2y$10$n39QYIYliV9L3sb3f0E0COWJ0GdpJGZjZzyCrqOGiV5mYz4zA3Kme';
 
 if (password_verify($password, $hash)) {

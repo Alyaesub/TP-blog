@@ -8,8 +8,8 @@ $pdo = ConnexionDb::getPdo();
 $title = "Éditer la catégorie";
 $id = $_GET['id'] ?? $_POST['id'] ?? null;
 
-/* var_dump($_POST);
- */ // Si le formulaire est soumis, on met à jour la catégorie dans la base de données
+
+// Si le formulaire est soumis, on met à jour la catégorie dans la base de données
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $name = $_POST['name'] ?? '';
   $slug = $_POST['slug'] ?? '';
